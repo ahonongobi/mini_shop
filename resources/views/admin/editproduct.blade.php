@@ -4,7 +4,7 @@
 
 <div class="container">
     
-    <form style="padding: 10px" action="{{ URL('addproductpost') }}" method="post" enctype="multipart/form-data">
+    <form style="padding: 10px" action="{{ URL('editproductpost') }}" method="post" enctype="multipart/form-data">
         
         {{-- any error --}}
         <div class="section-block mt-5">
@@ -26,13 +26,13 @@
         @csrf
         <div class="form-group">
             <input class="form-control" type="text" name="libelle"
-                id="key" placeholder="Un libelle">
+                id="key" value="{{$product->libelle}}" placeholder="Un libelle">
         </div>
         
         
         <div class="form-group">
             <input class="form-control" type="text" name="prix"
-                id="key" placeholder="Prix">
+                id="key" value="{{$product->prix}}" placeholder="Prix">
         </div>
         <div class="form-group">
             <div class="form-label-group">
@@ -40,7 +40,7 @@
                 <option value=""> Choisir... </option>
                 @foreach ($category as $item)
                  
-                <option value="{{$item->category}}"> {{$item->category}} </option>
+                <option value="{{$item->category}}" {{ $item->category === $product->category ? 'selected' : '' }}> {{$item->category}} </option>
                 @endforeach
               </select> <label for="fls1">Categorie</label>
             </div>
@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="form-group">
-            <textarea name="description" id="mytextarea">Hello, World!</textarea>
+            <textarea name="description"  id="mytextarea">{{$product->description}}</textarea>
           </div>
         
     

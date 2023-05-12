@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -16,6 +18,20 @@ class ProductController extends Controller
     {
         $category = Category::all();
         return view('admin.category', compact('category'));
+    }
+    // editproduct
+    public function editproduct($id)
+    {
+        $product = Product::where('code', $id)->first();
+        return view('admin.editproduct', compact('product'));
+    }
+
+    // deleteproduct
+    public function deleteproduct($id)
+    {
+        $product = Product::where('code', $id)->first();
+        $product->delete();
+        return redirect()->back()->with('success', 'Produit supprimé avec succès');
     }
 
     // post addcategory
@@ -30,5 +46,36 @@ class ProductController extends Controller
         $category->save();
 
         return redirect()->back()->with('success', 'Category Added Successfully');
+    }
+
+    // addProductPost
+    public function addProductPost(Request $request)
+    {
+        $request->validate([
+            //'libelle' => 'required|unique:products|max:255',
+            'libelle' => 'required|max:255',
+            'prix' => 'required',
+            'category' => 'required',
+            'image' => 'required',
+            //'description' => 'required',
+        ]);
+
+        $product = new Product();
+        // generate random code four digit
+        $product->libelle = $request->libelle;
+        // generate random code four digit 
+        $product->code = rand(1000, 9999);
+        $product->author = Auth::user()->name;
+        $product->prix = $request->prix;
+        $product->category = $request->category;
+
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();  
+        $request->image->move(public_path('images'), $imageName);
+        $product->image = $imageName;
+
+        $product->description = $request->description;
+        $product->save();
+
+        return redirect()->back()->with('success', 'Product Added Successfully');
     }
 }

@@ -27,5 +27,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/addproduct', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('add-product');
 Route::get('/category', [App\Http\Controllers\ProductController::class, 'addCategory'])->name('add-category');
 Route::post('/addcategory', [App\Http\Controllers\ProductController::class, 'addCategoryPost'])->name('add-categoryPost');
+// editproduct
+Route::get('/editproduct/{id}', [App\Http\Controllers\ProductController::class, 'editproduct'])->name('editproduct');
+// deleteproduct
+Route::get('/deleteproduct/{id}', [App\Http\Controllers\ProductController::class, 'deleteproduct'])->name('deleteproduct');
+// post addproductpost
+Route::post('/addproductpost', [App\Http\Controllers\ProductController::class, 'addProductPost'])->name('add-productPost');
 
+// ajouterpromo
+Route::get('/ajouterpromo', [App\Http\Controllers\PromoController::class, 'ajouterpromo'])->name('ajouterpromo');
+// addpromo post
+Route::post('/addpromo', [App\Http\Controllers\PromoController::class, 'addpromo'])->name('addpromo');
+// applypromo
+Route::post('/applypromo', [App\Http\Controllers\PromoController::class, 'applypromo'])->name('applypromo');
+
+// logout 
+Route::get('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('logout');
 

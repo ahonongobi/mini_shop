@@ -15,6 +15,19 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table -> string('code');
+            $table -> string('author');
+            $table -> string('libelle');
+            $table -> string('description');
+            $table -> string('prix');
+            $table -> decimal('prix_promo', 5, 2)->default(0);
+            // date de debut de la promo
+            $table -> date('date_debut')->nullable();
+            // date de fin de la promo
+            $table -> date('date_fin')->nullable();
+
+            $table -> string('category');
+            $table -> string('image');
             $table->timestamps();
         });
     }

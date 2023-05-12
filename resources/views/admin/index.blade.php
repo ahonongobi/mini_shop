@@ -17,61 +17,16 @@
                 <!-- .page-inner -->
                 <div class="page-inner">
                     <!-- .page-title-bar -->
-                    <header class="page-title-bar">
-                        <!-- .breadcrumb -->
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">
-                                    <a href="#"><i
-                                            class="breadcrumb-icon fa fa-angle-left mr-2"></i>Tables</a>
-                                </li>
-                            </ol>
-                        </nav><!-- /.breadcrumb -->
-                        <!-- floating action -->
-                        <button type="button" data-toggle="modal" data-target="#modalTable"
-                            class="btn btn-success btn-floated"><span class="fa fa-plus"></span></button>
-                        <!-- /floating action -->
-                        <!-- title and toolbar -->
-                        <div id="pending" class="d-md-flex align-items-md-start ">
-                            <div style="display: none" class="col-lg-6">
-                                <!-- Growing spinner -->
-                                <h3 class="section-title"> Growing spinner </h3>
-                                <div class="spinner-grow text-primary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-secondary" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-success" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-danger" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-warning" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-info" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-muted" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <div class="spinner-grow text-dark" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </div><!-- /grid column -->
-                            <h1 class="page-title mr-sm-auto"> Les demandes </h1><!-- .btn-toolbar -->
-                            <!-- /.btn-toolbar -->
-                            
-                        </div><!-- /title and toolbar -->
-                    </header><!-- /.page-title-bar -->
+                    <!-- /.page-title-bar -->
                     <!-- .page-section -->
-                    <div class="page-section">
-                        @if(Session::has('success'))
-                        <div class="alert alert-success">{{Session::get('success')}}</div>
-                        @endif
-                        
+                    <div class="page-section ">
+                        <div class="d-flex justify-content-center">
+                            @if(Session::has('success'))
+                            <div class="alert alert-success">{{Session::get('success')}}</div>
+                            @endif
+                            
+                        </div>
+                       
                         <!-- .card -->
                         <div class="card card-fluid">
                             <!-- .card-header -->
@@ -89,50 +44,63 @@
 
                                 <div class="table-responsive">
                                     <!-- .table -->
-                                    <table class="table">
+                                    <a href="{{URL('/addproduct')}}"  class="btn btn-secondary">Créer un produit</a>
+
+                                    <table  id="example" class="table">
                                         <!-- thead -->
+                                        
                                         <thead>
                                             <tr>
-
-                                                <th> Nom </th>
-                                                <th>Adresse</th>
-                                                <th> email </th>
-                                                <th> Montant </th>
-                                                <th> Telephone </th>
-                                                <th> Message </th>
+                                                <th> Image </th>
+                                                <th> Autheur </th>
+                                                <th> Libelle</th>
+                                                <th> Prix </th>
+                                                <th> Category </th>
+                                                
+                                                <th>Description</th>
                                                 
                                                 <th style="width:100px; min-width:100px;"> &nbsp; </th>
                                             </tr>
                                         </thead><!-- /thead -->
                                         <!-- tbody -->
-                                        {{--<tbody>
+                                        <tbody>
                                             <!-- tr -->
-                                            @foreach ($user as $item)
+                                            @foreach ($prduct as $item)
                                                 <tr>
 
 
-                                                    <td class="align-middle"> {{ $item->nom }} </td>
-                                                    <td class="align-middle"> {{ $item->adresse }} </td>
-                                                    <td class="align-middle"> {{ $item->email }} </td>
-                                                    <td class="align-middle"> {{ $item->montant }}€ </td>
-                                                    <td class="align-middle"> {{ $item->telephoneportable }} </td>
-                                                    <td class="align-middle"> {{ substr($item->message, 0, 10) . '...'}} </td>
+                                                    <td>eeeeeeee</td>
+                                                    <td class="align-middle"> {{ $item->author }} </td>
+                                                    <td class="align-middle"> {{ $item->libelle }} </td>
+                                                    <td class="align-middle"> {{ $item->prix }}€ (
+                                                        @if ($item->prix_promo)
+                                                            <span class="badge badge-success"> {{ $item->prix_promo }} € </span>
+                                                        @endif
+                                                    ) </td>
+                                                    <td class="align-middle"> {{ $item->category }} </td>
+                                                    <td class="align-middle"> {{ substr($item->description, 0, 10) . '...'}} </td>
                                                     <td class="align-middle text-right">
-                                                        <a onclick="send_message({{$item->id}},'{{$item->nom}}')"
+                                                        <a href="{{ URL('editproduct/' . $item->code) }}"
                                                             class="btn btn-sm  btn-icon btn-secondary"><i
-                                                                class="fa fa-envelope"></i> <span
-                                                                class="sr-only">envelope</span></a> <a
-                                                            onclick="pending()"
-                                                            href="{{ route('users.index', ['download' => $item->id]) }}"
+                                                                class="fa fa-edit"></i> <span
+                                                                class="sr-only">edit</span></a> 
+                                                                <a
+                                                            
+                                                            onclick="appliquer_promo({{$item->code}},'{{$item->libelle}}')"
                                                             class="btn btn-sm btn-icon btn-secondary"><i
-                                                                class="far fa-file"></i> <span
-                                                                class="sr-only">file</span></a>
+                                                                class="fa fa-tag"></i> <span
+                                                                class="sr-only">tag</span></a>
+
+                                                                <a href="{{ URL('deleteproduct/' . $item->code) }}"
+                                                                    class="btn btn-sm  btn-icon btn-secondary"><i
+                                                                        class="fa fa-trash"></i> <span
+                                                                        class="sr-only">trash</span></a> 
                                                     </td>
                                                 </tr>
                                             @endforeach
 
 
-                                        </tbody>--}}<!-- /tbody -->
+                                        </tbody><!-- /tbody -->
                                     </table><!-- /.table -->
                                 </div><!-- /.table-responsive -->
                                 <!-- .pagination -->
@@ -240,15 +208,22 @@
                                         <!-- .table -->
                                         <!-- /.table -->
 
-                                        <form style="padding: 10px" action="{{ URL('send_message') }}" method="post">
+                                        <form style="padding: 10px" action="{{ URL('applypromo') }}" method="post">
                                             @csrf
-                                            <input type="hidden" id="message_id" value="" name="message_id">
+                                            <input type="hidden" id="message_id" value="" name="code_product">
                                             <div class="form-group">
-                                                <label id="label_message" for="Message">Message</label>
-                                                <textarea class="form-control" name="message" id="" cols="30" rows="10"></textarea>
-                                            </div>
+                                                <div class="form-label-group">
+                                                  <select name="promo" class="custom-select" id="fls1">
+                                                    <option value=""> Choisir... </option>
+                                                    @foreach ($promo as $item)
+                                                     
+                                                    <option value="{{$item->reduction}}"> {{$item->reduction}}% </option>
+                                                    @endforeach
+                                                  </select> <label for="fls1">Promo</label>
+                                                </div>
+                                              </div>
 
-                                            <button class="btn btn-primary">Enregister</button>
+                                            <button class="btn btn-primary">Appliquer la promotion</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">

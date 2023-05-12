@@ -31,19 +31,20 @@
       }
     </script><!-- End SEO tag -->
     <!-- FAVICONS -->
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png">
-    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/apple-touch-icon.png')}}">
+    <link rel="shortcut icon" href="{{asset('assets/favicon.ico')}}">
     <meta name="theme-color" content="#3063A0"><!-- End FAVICONS -->
     <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet"><!-- End GOOGLE FONT -->
     <!-- BEGIN PLUGINS STYLES -->
-    <link rel="stylesheet" href="assets/vendor/open-iconic/font/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/%40fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('assets/vendor/open-iconic/font/css/open-iconic-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/%40fortawesome/fontawesome-free/css/all.min.css')}}">
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN THEME STYLES -->
-    <link rel="stylesheet" href="assets/stylesheets/theme.min.css" data-skin="default">
-    <link rel="stylesheet" href="assets/stylesheets/theme-dark.min.css" data-skin="dark">
-    <link rel="stylesheet" href="assets/stylesheets/custom.css">
+    <link rel="stylesheet" href="{{asset('assets/stylesheets/theme.min.css')}}" data-skin="default">
+    <link rel="stylesheet" href="{{asset('assets/stylesheets/theme-dark.min.css')}}" data-skin="dark">
+    <link rel="stylesheet" href="{{asset('assets/stylesheets/custom.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <script>
         var skin = localStorage.getItem('skin') || 'default';
         var disabledSkinStylesheet = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
@@ -53,11 +54,17 @@
         // add loading class to html immediately
         document.querySelector('html').classList.add('loading');
     </script><!-- END THEME STYLES -->
+    <script src="https://cdn.tiny.cloud/1/7u3r7qea3yrq1hrwqqd2v3ocyc39hxgn6q4rqwvvw9wkr1ib/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: '#mytextarea'
+        });
+      </script>
 </head>
 
 <body>
 
-    <header class="app-header app-header-dark">
+    <header class="app-header app-header-dark mb-5">
         <!-- .top-bar -->
         <div class="top-bar">
             <!-- .top-bar-brand -->
@@ -109,12 +116,12 @@
                                             <span>Raccourci</span>
                                         </h6><!-- .list-group-item -->
                                         <div class="list-group-item py-2">
-                                            <a data-toggle="modal" data-target="#modalTable"
+                                            <a href="/addproduct"
                                                 class="stretched-link"></a>
                                             <div class="tile tile-sm bg-muted">
                                                 <i class="fas fa-user-plus"></i>
                                             </div>
-                                            <div class="ml-2"> Ajouter une clé</div>
+                                            <div class="ml-2"> Ajouter un produit</div>
                                         </div><!-- /.list-group-item -->
                                         <!-- .list-group-item -->
                                         <div class="list-group-item py-2">
@@ -122,7 +129,7 @@
                                             <div class="tile tile-sm bg-muted">
                                                 <i class="fas fa-dollar-sign"></i>
                                             </div>
-                                            <div class="ml-2"> Liste des demandes </div>
+                                            <div class="ml-2"> Liste des produits </div>
                                         </div><!-- /.list-group-item -->
                                         <!-- /.list-group-item -->
                                     </div><!-- /.list-group -->
@@ -150,16 +157,16 @@
                                 <div class="dropdown-sheets">
                                     <!-- .dropdown-sheet-item -->
                                     <div class="dropdown-sheet-item">
-                                        <a data-toggle="modal" data-target="#modalTable"
+                                        <a href="/category"
                                             class="tile-wrapper"><span class="tile tile-lg bg-indigo"><i
-                                                    class="oi oi-key"></i></span> <span
-                                                class="tile-peek">Key</span></a>
+                                                    class="oi oi-flag"></i></span> <span
+                                                class="tile-peek">Categorie</span></a>
                                     </div><!-- /.dropdown-sheet-item -->
                                     <!-- .dropdown-sheet-item -->
                                     <div class="dropdown-sheet-item">
-                                        <a href="/home" class="tile-wrapper"><span
-                                                class="tile tile-lg bg-teal"><i class="oi oi-file"></i></span>
-                                            <span class="tile-peek">Demandes</span></a>
+                                        <a href="/ajouterpromo" class="tile-wrapper"><span
+                                                class="tile tile-lg bg-teal"><i class="oi oi-tag"></i></span>
+                                            <span class="tile-peek">Promotion</span></a>
                                     </div><!-- /.dropdown-sheet-item -->
                                     <!-- .dropdown-sheet-item -->
                                     <!-- /.dropdown-sheet-item -->
@@ -239,6 +246,11 @@
                                     class="menu-text">Catégories</span></a>
                         </li>
 
+                        <li class="menu-item">
+                            <a href="/ajouterpromo" class="menu-link"><span class="menu-icon fas fa-tag"></span> <span
+                                    class="menu-text">Promo</span></a>
+                        </li>
+
 
 
                         <li class="menu-item">
@@ -263,17 +275,18 @@
     @yield('content')
     <!-- /.app -->
     <!-- BEGIN BASE JS -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/popper.js/umd/popper.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script> <!-- END BASE JS -->
+    <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('assets/vendor/popper.js/umd/popper.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script> <!-- END BASE JS -->
     <!-- BEGIN PLUGINS JS -->
-    <script src="assets/vendor/pace-progress/pace.min.js"></script>
+    <script src="{{asset('assets/vendor/pace-progress/pace.min.js')}}"></script>
     <script src="assets/vendor/stacked-menu/js/stacked-menu.min.js"></script>
-    <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script> <!-- END PLUGINS JS -->
+    <script src="{{asset('assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script> <!-- END PLUGINS JS -->
     <!-- BEGIN THEME JS -->
-    <script src="assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+    <script src="{{asset('assets/javascript/theme.min.js')}}"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="assets/javascript/pages/table-demo.js"></script> <!-- END PAGE LEVEL JS -->
+    <script src="{{asset('assets/javascript/pages/table-demo.js')}}"></script> <!-- END PAGE LEVEL JS -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116692175-1"></script>
     <script>
@@ -317,6 +330,57 @@
         
 
     </script>
+    <script>
+        
+
+        function appliquer_promo(id, libbelle) {
+            $('#message_id').val(id);
+            $('#label_message').text('Message a '+libbelle);
+            // open modalTable2 modal 
+            $('#modalTable2').modal('show');
+
+           /* $.ajax({
+                url: 'send_message/' + id,
+                type: 'GET',
+                success: function(data) {
+                    // if success, show success message
+                    alert('Message sent successfully to id N'+id);
+                }
+            }); **/
+        }
+    </script>
+
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ]
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+    $('#example').DataTable(
+        // in french
+        {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+            },
+
+            // hide Affichage de l'élément 1 à 2 sur 2 éléments
+            "info": false,
+            
+        }
+    );
+    
+    
+});
+  </script>
 </body>
 
 </html>

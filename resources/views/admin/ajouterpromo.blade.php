@@ -4,7 +4,7 @@
 
 <div class="container">
     
-    <form style="padding: 10px" action="{{ URL('addcategory') }}" method="post">
+    <form style="padding: 10px" action="{{ URL('addpromo') }}" method="post">
         <div class="section-block mt-5">
             <div class="table-responsive">
                 <!-- .table -->
@@ -13,7 +13,9 @@
                     <thead>
                         <tr>
         
-                            <th> Nom </th>
+                            <th> Promo </th>
+                            <th>Date de debut</th>
+                            <th>Date de fin</th>
                             
                             
                             <th style="width:100px; min-width:100px;"> &nbsp; </th>
@@ -22,11 +24,13 @@
                     <!-- tbody -->
                     <tbody>
                         <!-- tr -->
-                        @foreach ($category as $item)
+                        @foreach ($promo as $item)
                             <tr>
         
         
-                                <td class="align-middle"> {{ $item->category }} </td>
+                                <td class="align-middle"> {{ $item->reduction }} </td>
+                                <td class="align-middle"> {{ $item->date_debut }} </td>
+                                <td class="align-middle"> {{ $item->date_fin }} </td>
                                 
                                 <td class="align-middle text-right">
                                     <a onclick="return confirm('Voulez-vous supprimer cette categorie ?')"
@@ -44,12 +48,20 @@
             @if(Session::has('success'))
             <div class="alert alert-success">{{Session::get('success')}}</div>
             @endif
-            <h2>Créer une Catégorie</h2>
+            <h2>Créer une Promotion</h2>
         </div>
         @csrf
         <div class="form-group">
-            <input required class="form-control" type="text" name="category"
-                id="key" placeholder="Category">
+            <input required class="form-control" type="text" name="promo"
+                id="key" placeholder="Promo reduction en % (Ex: 10)">
+        </div>
+        <div class="form-group">
+            <input required class="form-control" type="date" name="date_debut"
+                id="key" placeholder="Date de debut">
+        </div>
+        <div class="form-group">
+            <input required class="form-control" type="date" name="date_fin"
+                id="key" placeholder="Date de fin">
         </div>
     
         <button class="btn btn-primary">Enregister</button>
