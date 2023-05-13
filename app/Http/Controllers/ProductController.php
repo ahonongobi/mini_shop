@@ -19,6 +19,13 @@ class ProductController extends Controller
         $category = Category::all();
         return view('admin.category', compact('category'));
     }
+    // deletecategory
+    public function deletecategory($id)
+    {
+        $category = Category::where('id', $id)->first();
+        $category->delete();
+        return redirect()->back()->with('success', 'Category supprimé avec succès');
+    }
     // editproduct
     public function editproduct($id)
     {

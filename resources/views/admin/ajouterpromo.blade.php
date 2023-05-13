@@ -1,7 +1,7 @@
 @extends('layouts._layouts')
 
 @section('content')
-
+<div class="app">
 <div class="container">
     
     <form style="padding: 10px" action="{{ URL('addpromo') }}" method="post">
@@ -33,7 +33,11 @@
                                 <td class="align-middle"> {{ $item->date_fin }} </td>
                                 
                                 <td class="align-middle text-right">
-                                    <a onclick="return confirm('Voulez-vous supprimer cette categorie ?')"
+                                    <a href="/editpromo/{{ $item->code }}" 
+                                        class="btn btn-sm  btn-icon btn-secondary"><i
+                                            class="fa fa-edit"></i> <span
+                                            class="sr-only">edit</span></a> 
+                                    <a href="/deletepromo/{{ $item->id }}" onclick="return confirm('Voulez-vous supprimer cette promotion ?')"
                                         class="btn btn-sm  btn-icon btn-secondary"><i
                                             class="fa fa-trash"></i> <span
                                             class="sr-only">trash</span></a> 
@@ -66,5 +70,6 @@
     
         <button class="btn btn-primary">Enregister</button>
     </form>
+</div>
 </div>
 @endsection

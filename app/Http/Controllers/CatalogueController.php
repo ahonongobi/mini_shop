@@ -10,6 +10,6 @@ class CatalogueController extends Controller
     public function catalogues($cat)
     {
         $products = Product::where('category', $cat)->get();
-        return view('shop', compact('products'));
+        return view('shop', compact('products', 'cat'));
     }
 }

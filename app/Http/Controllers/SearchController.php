@@ -18,6 +18,11 @@ class SearchController extends Controller
             ->orWhere('prix', 'like', "%$search%")
             ->orWhere('prix_promo', 'like', "%$search%")
             ->get();
-        return view('shop', compact('products'));
+        $cat = 'search';
+        // then get the  name of seleted search category found distinclty
+        $key = $request->input('search2');
+        $count = count($products);
+    
+        return view('shop', compact('products', 'cat', 'key', 'count'));
     }
 }

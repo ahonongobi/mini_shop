@@ -43,8 +43,10 @@
                             <div class="shop-submenu">
                                 <ul>
                                     @foreach($category as $categories)
+
                                     
-                                    <li><a href="/catalogue/{{$categories->category}}">{{$categories->category}}</a></li>
+
+                                    <li class="current-cat"><a  href="/catalogue/{{$categories->category}}">{{$categories->category}}</a></li>
                                     @endforeach
                                     
                                 </ul>

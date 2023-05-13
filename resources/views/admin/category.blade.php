@@ -1,7 +1,7 @@
 @extends('layouts._layouts')
 
 @section('content')
-
+<div class="app">
 <div class="container">
     
     <form style="padding: 10px" action="{{ URL('addcategory') }}" method="post">
@@ -29,7 +29,12 @@
                                 <td class="align-middle"> {{ $item->category }} </td>
                                 
                                 <td class="align-middle text-right">
-                                    <a onclick="return confirm('Voulez-vous supprimer cette categorie ?')"
+                                    <a href="/editcategory/{{$item->id}}"
+                                        class="btn btn-sm  btn-icon btn-secondary"><i
+                                            class="fa fa-edit"></i> <span
+                                            class="sr-only">edit</span></a> 
+
+                                    <a href="/deletecategory/{{$item->id}}" onclick="return confirm('Voulez-vous supprimer cette categorie ?')"
                                         class="btn btn-sm  btn-icon btn-secondary"><i
                                             class="fa fa-trash"></i> <span
                                             class="sr-only">trash</span></a> 
@@ -48,11 +53,12 @@
         </div>
         @csrf
         <div class="form-group">
-            <input required class="form-control" type="text" name="category"
+            <input value="" required class="form-control" type="text" name="category"
                 id="key" placeholder="Category">
         </div>
     
         <button class="btn btn-primary">Enregister</button>
     </form>
+</div>
 </div>
 @endsection

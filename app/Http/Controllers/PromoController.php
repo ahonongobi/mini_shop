@@ -24,6 +24,13 @@ class PromoController extends Controller
         $promo->save();
         return redirect()->back()->with('success', 'Promo ajoutée avec succès');
     }
+    // deletepromo
+    public function deletepromo($id)
+    {
+        $promo = \App\Models\Promo::find($id);
+        $promo->delete();
+        return redirect()->back()->with('success', 'Promo supprimée avec succès');
+    }
 
     // applypromo
     public function applypromo(Request $request)

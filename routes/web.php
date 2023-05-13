@@ -33,6 +33,8 @@ Route::get('/editproduct/{id}', [App\Http\Controllers\ProductController::class, 
 Route::get('/deleteproduct/{id}', [App\Http\Controllers\ProductController::class, 'deleteproduct'])->name('deleteproduct');
 // post addproductpost
 Route::post('/addproductpost', [App\Http\Controllers\ProductController::class, 'addProductPost'])->name('add-productPost');
+// deletecategory
+Route::get('/deletecategory/{id}', [App\Http\Controllers\ProductController::class, 'deletecategory'])->name('deletecategory');
 // editproductpost
 Route::post('/editproductpost/{code}', [App\Http\Controllers\ProductController::class, 'editproductpost'])->name('editproductpost');
 // ajouterpromo
@@ -41,7 +43,8 @@ Route::get('/ajouterpromo', [App\Http\Controllers\PromoController::class, 'ajout
 Route::post('/addpromo', [App\Http\Controllers\PromoController::class, 'addpromo'])->name('addpromo');
 // applypromo
 Route::post('/applypromo', [App\Http\Controllers\PromoController::class, 'applypromo'])->name('applypromo');
-
+// deletepromo
+Route::get('/deletepromo/{id}', [App\Http\Controllers\PromoController::class, 'deletepromo'])->name('deletepromo');
 // logout 
 Route::get('/logout', [App\Http\Controllers\LogoutController::class, 'logout'])->name('logout');
 
@@ -50,6 +53,16 @@ Route::get('/catalogue/{category}', [App\Http\Controllers\CatalogueController::c
 
 // search
 Route::post('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
+
+
+// editpromo using clientsuggescontroller
+Route::get('/editpromo/{id}', [App\Http\Controllers\ClientsuggestionController::class, 'editpromo'])->name('editpromo');
+// editpromopost
+Route::post('/editpromopost/{id}', [App\Http\Controllers\ClientsuggestionController::class, 'editpromopost'])->name('editpromopost');
+// editcategory
+Route::get('/editcategory/{id}', [App\Http\Controllers\ClientsuggestionController::class, 'editcategory'])->name('editcategory');
+// editcategorypost
+Route::post('/editcategorypost/{id}', [App\Http\Controllers\ClientsuggestionController::class, 'editcategorypost'])->name('editcategorypost');
 
 
 

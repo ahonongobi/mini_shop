@@ -9,16 +9,16 @@
     <title> Admin invoice </title>
     <meta property="og:title" content="Basic Table">
     <meta name="author" content="Beni Arisandi">
-    <meta property="og:locale" content="en_US">
-    <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
-    <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="description" content="website, ecommerce, seo, produits">
+    <meta property="og:description" content="website, ecommerce, seo, produits">
     <link rel="canonical" href="index-2.html">
     <meta property="og:url" content="index-2.html">
-    <meta property="og:site_name" content="Looper - Bootstrap 4 Admin Theme">
+    <meta property="og:site_name" content="website, ecommerce, seo, produits">
     <script type="application/ld+json">
       {
-        "name": "Looper - Bootstrap 4 Admin Theme",
-        "description": "Responsive admin theme build on top of Bootstrap 4",
+        "name": "website, ecommerce, seo, produits",
+        "description": "website, ecommerce, seo, produits",
         "author":
         {
           "@type": "Person",
@@ -279,7 +279,7 @@
     <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script> <!-- END BASE JS -->
     <!-- BEGIN PLUGINS JS -->
     <script src="{{asset('assets/vendor/pace-progress/pace.min.js')}}"></script>
-    <script src="assets/vendor/stacked-menu/js/stacked-menu.min.js"></script>
+    <script src="{{asset('assets/vendor/stacked-menu/js/stacked-menu.min.js')}}"></script>
     <script src="{{asset('assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script> <!-- END PLUGINS JS -->
     <!-- BEGIN THEME JS -->
     <script src="{{asset('assets/javascript/theme.min.js')}}"></script> <!-- END THEME JS -->

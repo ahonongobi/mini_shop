@@ -1,7 +1,7 @@
 @extends('layouts._layouts')
 
 @section('content')
-
+<div class="app">
 <div class="container">
     
     <form style="padding: 10px" action="{{ URL('editproductpost/'.$product_->code) }}" method="post" enctype="multipart/form-data">
@@ -60,5 +60,6 @@
     
         <button class="btn btn-primary">Enregister</button>
     </form>
+</div>
 </div>
 @endsection

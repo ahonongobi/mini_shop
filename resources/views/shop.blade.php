@@ -21,7 +21,7 @@
                     <div class="inner">
                         <div class="bradcrumb-thumb">
                             <img src="{{asset('assets-admin/images/product-45.png')}}" alt="Image">
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -42,11 +42,25 @@
                             <h6 class="title">CATEGORIES</h6>
                             <div class="shop-submenu">
                                 <ul>
+                                    @if($cat !== "search")
+                                    <li class="current-cat"><a href="#">{{$cat}}</a></li>
+                                    @endif
+                                    @if($cat !== "search")
                                     @foreach($category as $categories)
+                                    @if($cat == $categories->category)
+                                    <li><a class="d-none" href="/catalogue/{{$categories->category}}">{{$categories->category}}</a></li>
+
                                     
+                                    @else
                                     <li><a href="/catalogue/{{$categories->category}}">{{$categories->category}}</a></li>
+                                    @endif
                                     @endforeach
-                                    
+                                    @endif
+                                    @if($cat == "search")
+                                    <h6>
+                                        {{$count ?? 0 }} Recherche trouvée pour: {{$key }}
+                                    </h6>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
