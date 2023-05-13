@@ -188,7 +188,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-arrow d-lg-none" x-arrow=""></div>
                             <div class="dropdown-arrow ml-3 d-none d-lg-block"></div>
-                            <a class="dropdown-item" href="/logout"><span
+                            <a class="dropdown-item d-none" href="/logout"><span
                                     class="dropdown-icon oi oi-person"></span> Profile</a> <a
                                 class="dropdown-item" href="/logout"><span
                                     class="dropdown-icon oi oi-account-logout"></span>Deconnexion</a>
