@@ -33,7 +33,8 @@ Route::get('/editproduct/{id}', [App\Http\Controllers\ProductController::class, 
 Route::get('/deleteproduct/{id}', [App\Http\Controllers\ProductController::class, 'deleteproduct'])->name('deleteproduct');
 // post addproductpost
 Route::post('/addproductpost', [App\Http\Controllers\ProductController::class, 'addProductPost'])->name('add-productPost');
-
+// editproductpost
+Route::post('/editproductpost/{code}', [App\Http\Controllers\ProductController::class, 'editproductpost'])->name('editproductpost');
 // ajouterpromo
 Route::get('/ajouterpromo', [App\Http\Controllers\PromoController::class, 'ajouterpromo'])->name('ajouterpromo');
 // addpromo post
@@ -49,4 +50,6 @@ Route::get('/catalogue/{category}', [App\Http\Controllers\CatalogueController::c
 
 // search
 Route::post('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
+
+
 

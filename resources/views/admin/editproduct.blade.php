@@ -4,8 +4,8 @@
 
 <div class="container">
     
-    <form style="padding: 10px" action="{{ URL('editproductpost') }}" method="post" enctype="multipart/form-data">
-        
+    <form style="padding: 10px" action="{{ URL('editproductpost/'.$product_->code) }}" method="post" enctype="multipart/form-data">
+         
         {{-- any error --}}
         <div class="section-block mt-5">
           {{-- any error --}}
@@ -26,13 +26,13 @@
         @csrf
         <div class="form-group">
             <input class="form-control" type="text" name="libelle"
-                id="key" value="{{$product->libelle}}" placeholder="Un libelle">
+                id="key" value="{{$product_->libelle ?? ""}}" placeholder="Un libelle">
         </div>
         
         
         <div class="form-group">
             <input class="form-control" type="text" name="prix"
-                id="key" value="{{$product->prix}}" placeholder="Prix">
+                id="key" value="{{$product_->prix ?? ""}}" placeholder="Prix">
         </div>
         <div class="form-group">
             <div class="form-label-group">
@@ -40,7 +40,7 @@
                 <option value=""> Choisir... </option>
                 @foreach ($category as $item)
                  
-                <option value="{{$item->category}}" {{ $item->category === $product->category ? 'selected' : '' }}> {{$item->category}} </option>
+                <option value="{{$item->category}}" {{ $item->category === $product_->category ? 'selected' : '' }}> {{$item->category}} </option>
                 @endforeach
               </select> <label for="fls1">Categorie</label>
             </div>
@@ -50,9 +50,11 @@
             <div class="custom-file">
               <input type="file" name="image" class="custom-file-input" id="tf3"> <label class="custom-file-label" for="tf3">Choisir un fichier</label>
             </div>
+            {{-- <img src="{{asset('images/'.$product_->image)}}" alt="" srcset=""> --}}
+            <img src="{{asset('images/'.$product_->image)}}" alt="" srcset="">
           </div>
           <div class="form-group">
-            <textarea name="description"  id="mytextarea">{{$product->description}}</textarea>
+            <textarea name="description"  id="mytextarea">{{$product_->description ??''}}</textarea>
           </div>
         
     

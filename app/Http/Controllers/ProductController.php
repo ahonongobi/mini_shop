@@ -22,8 +22,35 @@ class ProductController extends Controller
     // editproduct
     public function editproduct($id)
     {
-        $product = Product::where('code', $id)->first();
-        return view('admin.editproduct', compact('product'));
+        $product_ = Product::where('code', $id)->first();
+        return view('admin.editproduct', compact('product_'));
+    }
+    // editproductpost
+    public function editproductpost(Request $request)
+    {
+        $request->validate([
+            'libelle' => 'required|max:255',
+            'prix' => 'required',
+            'category' => 'required',
+            //'image' => 'required',
+            //'description' => 'required',
+        ]);
+
+        $product = Product::where('code', $request->code)->first();
+        $product->libelle = $request->libelle;
+        $product->prix = $request->prix;
+        $product->category = $request->category;
+
+        if($request->hasFile('image')){
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();  
+            $request->image->move(public_path('images'), $imageName);
+            $product->image = $imageName;
+        }
+
+        $product->description = $request->description;
+        $product->update();
+
+        return redirect()->back()->with('success', 'Product Updated Successfully');
     }
 
     // deleteproduct
