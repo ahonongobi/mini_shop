@@ -78,7 +78,19 @@
                                                         @endif
                                                     ) </td>
                                                     <td class="align-middle"> {{ $item->category }} </td>
-                                                    <td class="align-middle"> {{ substr($item->description, 0, 10) . '...'}} </td>
+                                                    <td class="align-middle">
+                                                        @php 
+
+                                                        $description = $item->description;
+                                                        $description = substr($description, 0, 30);
+                                                        // html entities  decode
+                                                        $description = html_entity_decode($description);
+                                                        // strip tags
+                                                        echo $description .'...';
+                                                        @endphp
+
+
+                                                    </td>
                                                     <td class="align-middle text-right">
                                                         <a href="{{ URL('editproduct/' . $item->code) }}"
                                                             class="btn btn-sm  btn-icon btn-secondary"><i
