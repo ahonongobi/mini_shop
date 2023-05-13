@@ -47,3 +47,6 @@ Route::get('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logou
 // catalogue
 Route::get('/catalogue/{category}', [App\Http\Controllers\CatalogueController::class, 'catalogues'])->name('catalogue');
 
+// search
+Route::post('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
+

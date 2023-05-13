@@ -74,10 +74,13 @@
                     <div class="header-action">
                         <ul class="action-list">
                             <li class="axil-search d-xl-block d-none">
-                                <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="Que recherchez vous ?" autocomplete="off">
+                                <form action="{{URL('search')}}" method="post">
+                                @csrf
+                                    <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="Que recherchez vous ?" autocomplete="off">
                                 <button type="submit" class="icon wooc-btn-search">
                                     <i class="flaticon-magnifying-glass"></i>
                                 </button>
+                                </form>
                             </li>
                             <li class="axil-search d-xl-none d-block">
                                 <a href="javascript:void(0)" class="header-search-icon" title="Search">
