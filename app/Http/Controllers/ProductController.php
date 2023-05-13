@@ -50,7 +50,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->update();
 
-        return redirect()->back()->with('success', 'Product Updated Successfully');
+        return redirect()->back()->with('success', 'Produit modifié avec succès');
     }
 
     // deleteproduct

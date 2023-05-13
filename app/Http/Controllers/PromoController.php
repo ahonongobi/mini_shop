@@ -29,12 +29,15 @@ class PromoController extends Controller
     public function applypromo(Request $request)
     {
         $reduction = $request->input('promo');
-        $promo = \App\Models\Promo::where('reduction', $request->input('promo'))->first();
-        
+        $promo_ = \App\Models\Promo::where('reduction', $request->input('promo'))->first();
+        $date_de_debut = $promo_->date_debut;
+        $date_de_fin = $promo_->date_fin;
+
+
         $promo = Product::where('code', $request->input('code_product'))->first();
         $promo->prix_promo = $promo->prix - ($promo->prix * $reduction / 100);
-        $promo->date_debut = $promo->date_debut;
-        $promo->date_fin = $promo->date_fin;
+        $promo->date_debut = $date_de_debut;
+        $promo->date_fin = $date_de_fin;
         $promo->update();
 
         return redirect()->back()->with('success', 'Promo appliquée avec succès');
