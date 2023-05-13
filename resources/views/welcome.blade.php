@@ -97,7 +97,7 @@
                                     </script>
                                     <!-- End Single Select  -->
                                 </div>
-                                <div class="d-lg-none">
+                                <div class="d-lg-none d-none">
                                     <button class="product-filter-mobile filter-toggle"><i class="fas fa-filter"></i> FILTER</button>
                                 </div>
                             </div>

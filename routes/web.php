@@ -43,7 +43,7 @@ Route::post('/addpromo', [App\Http\Controllers\PromoController::class, 'addpromo
 Route::post('/applypromo', [App\Http\Controllers\PromoController::class, 'applypromo'])->name('applypromo');
 
 // logout 
-Route::get('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('logout');
+Route::get('/logout', [App\Http\Controllers\LogoutController::class, 'logout'])->name('logout');
 
 // catalogue
 Route::get('/catalogue/{category}', [App\Http\Controllers\CatalogueController::class, 'catalogues'])->name('catalogue');

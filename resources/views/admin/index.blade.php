@@ -101,7 +101,9 @@
                                                             onclick="appliquer_promo({{$item->code}},'{{$item->libelle}}')"
                                                             class="btn btn-sm btn-icon btn-secondary"><i
                                                                 class="fa fa-tag"></i> <span
-                                                                class="sr-only">tag</span></a>
+                                                                class="sr-only">tag</span>
+                                                                
+                                                            </a>
 
                                                                 <a href="{{ URL('deleteproduct/' . $item->code) }}"
                                                                     class="btn btn-sm  btn-icon btn-secondary"><i
