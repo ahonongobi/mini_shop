@@ -105,7 +105,7 @@
                     </div>
                     <!-- End .row -->
                     <div class="row row--15">
-                        @foreach($product ?? $products as $item)
+                        @foreach($products as $item)
                         <div class="col-xl-4 col-sm-6">
                             <div class="axil-product product-style-one mb--30">
                                 <div class="thumbnail">

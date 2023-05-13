@@ -24,10 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['admin.*'], function ($view){
+        View::composer(['admin.*','*'], function ($view){
             $view->with('category', \App\Models\Category::all());
             // promo
             $view->with('promo', \App\Models\Promo::all());
+           // all product 
+            $view->with('product', \App\Models\Product::all());
 
          });
            

@@ -73,7 +73,7 @@
                 <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside-menu"
                     aria-label="toggle aside menu"><span class="hamburger-box"><span
                             class="hamburger-inner"></span></span></button> <!-- /toggle aside menu -->
-                <a href="/home"><svg xmlns="http://www.w3.org/2000/svg"
+                <a href="/home">{{--<svg xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" height="28" viewbox="0 0 351 100">
                         <defs>
                             <path id="a"
@@ -86,7 +86,9 @@
                             </path>
                             <use class="fill-warning" xlink:href="#a"></use>
                         </g>
-                    </svg></a>
+                    </svg>--}}
+                    <img src="{{asset('assets/images/logo/logo-light.png')}}" alt="logo" >
+                </a>
             </div><!-- /.top-bar-brand -->
             <!-- .top-bar-list -->
             <div class="top-bar-list">

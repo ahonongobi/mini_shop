@@ -18,7 +18,7 @@ return new class extends Migration
             $table -> string('code');
             $table -> string('author');
             $table -> string('libelle');
-            $table -> string('description');
+            $table -> longText('description');
             $table -> string('prix');
             $table -> decimal('prix_promo', 5, 2)->default(0);
             // date de debut de la promo

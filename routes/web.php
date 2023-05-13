@@ -44,3 +44,6 @@ Route::post('/applypromo', [App\Http\Controllers\PromoController::class, 'applyp
 // logout 
 Route::get('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('logout');
 
+// catalogue
+Route::get('/catalogue/{category}', [App\Http\Controllers\CatalogueController::class, 'catalogues'])->name('catalogue');
+
